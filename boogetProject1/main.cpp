@@ -24,7 +24,8 @@ bool toggleRightClicker = true;
 bool hideClicker = true;
 
 int main() {
-	HWND hwnd = FindWindowA(NULL, "LWJGL");
+	HWND hwnd = FindWindowA("LWJGL", nullptr);
+	
 	if (hwnd == NULL) {
 		std::cout << "Minecraft was not found!";
 		Sleep(2000);
