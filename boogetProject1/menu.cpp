@@ -13,9 +13,11 @@
 
 #include "menu.h"
 
+
 void menu() {
-	system("CLS");
-	SetConsoleTitle("Booget Clicker");
+	system("CLS"); // This is not best practice but works.
+	
+	SetConsoleTitleA("Booget Clicker");
 	HWND hwndCmd = GetConsoleWindow();
 	if (hwndCmd != NULL) { MoveWindow(hwndCmd, 340, 550, 340, 210, TRUE); }
 	SetWindowLong(hwndCmd, GWL_STYLE, GetWindowLong(hwndCmd, GWL_STYLE) & ~WS_MAXIMIZEBOX & ~WS_SIZEBOX);

@@ -80,6 +80,9 @@ int main() {
 			else if (hideClicker) {
 				::ShowWindow(::GetConsoleWindow(), SW_SHOW);
 			}
+
+			threadSleep(200);
+			// This will stop it from spamming if you hold down insert.
 		}
 	}
 }
