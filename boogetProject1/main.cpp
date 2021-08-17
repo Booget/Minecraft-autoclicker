@@ -1,6 +1,9 @@
 
 // main.cpp //
 
+// Sleep that uses time for exact amounts, also sleeps the thread instead of the main process, we're not using threads so that part doesent matter. 
+#define threadSleep(x) std::this_thread::sleep_for(std::chrono::milliseconds(x));
+
 #include <iostream> 
 #include <vector> 
 #include <string>
@@ -10,6 +13,8 @@
 #include <stdlib.h>
 #include <fstream> 
 #include <windows.h> 
+#include <chrono>
+#include <thread>
 
 #include "menu.h"
 
@@ -19,16 +24,16 @@ bool toggleRightClicker = true;
 bool hideClicker = true;
 
 int main() {
-	HWND hwnd = FindWindowA(NULL, "Lunar Client (1.8.9-61b802d/master)");
+	HWND hwnd = FindWindowA(NULL, "LWJGL");
 	if (hwnd == NULL) {
-		std::cout << "Lunar client was not found!";
+		std::cout << "Minecraft was not found!";
 		Sleep(2000);
 		return 0;
 	}
 	else {
-		std::cout << "Lunar client was found!\n";
+		std::cout << "Minecraft was found!\n";
 		std::cout << "Loading...\n";
-		Sleep(2000);
+		Sleep(2000); // Sleep cuz it looks cool
 		menu();
 	}
 	
@@ -48,9 +53,9 @@ int main() {
 				POINT pt;
 				GetCursorPos(&pt);
 				SendMessage(hwnd, WM_LBUTTONDOWN, MK_LBUTTON, MAKELPARAM(pt.x, pt.y));
-				Sleep(30);
+				threadSleep(30); 
 				SendMessage(hwnd, WM_LBUTTONUP, 0, MAKELPARAM(pt.x, pt.y));
-				Sleep(30);
+				threadSleep(30);
 			}
 		}
 		// Right clicker
@@ -59,9 +64,9 @@ int main() {
 				POINT pt;
 				GetCursorPos(&pt);
 				SendMessage(hwnd, WM_RBUTTONDOWN, MK_RBUTTON, MAKELPARAM(pt.x, pt.y));
-				Sleep(20);
+				threadSleep(20);
 				SendMessage(hwnd, WM_RBUTTONUP, 0, MAKELPARAM(pt.x, pt.y));
-				Sleep(20);
+				threadSleep(20);
 			}
 		}
 
